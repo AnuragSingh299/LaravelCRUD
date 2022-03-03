@@ -1,34 +1,34 @@
 <div class="mb-3">
     <label class="form-label" for="name">Name</label>
-    <input style="width: 50%" type="text" name="name" value="{{ $person->name ?? '' }}"class="form-control" required>
+    <input style="width: 50%" type="text" name="name" value="{{ $person->name ?? old("name") }}"class="form-control" required>
     @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
 <div class="mb-3">
     <label class="form-label" for="phone">Phone</label>
-    <input style="width: 25%" type="text" name="phone_no" value="{{ $person->phone_no ?? ''}}" class="form-control" required >
+    <input style="width: 25%" type="text" name="phone_no" value="{{ $person->phone_no ?? old("phone_no")}}" class="form-control" required >
     @error('phone_no')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
 <div class="mb-3">
     <label class="form-label" for="dob">Date of birth</label>
-    <input style="width: 25%" type="date" name="date_of_birth" value="{{ $person->date_of_birth ?? ''}}"class="form-control">
+    <input style="width: 25%" type="date" name="date_of_birth" value="{{ $person->date_of_birth ?? old("date_of_birth")}}"class="form-control" required>
     @error('date_of_birth')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
 <div class="mb-3">
     <label class="form-label" for="email">Email</label>
-    <input style="width: 50%" type="email" name="email" value="{{ $person->email ?? '' }}" class="form-control" required>
+    <input style="width: 50%" type="email" name="email" value="{{ $person->email ?? old("email") }}" class="form-control" required>
     @error('email')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
 <div class="mb-3">
     <label class="form-label" for="age">Age</label>
-    <input style="width: 20%" type="number" name="age" value="{{ $person->age ?? '' }}" class="form-control" required>
+    <input style="width: 20%" type="number" name="age" value="{{ $person->age ?? old("age") }}" class="form-control" required >
     @error('age')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
@@ -92,7 +92,7 @@
   </div>
 <div class="mb-3">
     <label class="form-label" for="description">Description</label>
-    <textarea style="width: 50%" name="description" class="form-control" rows="4" required>{{ $person->description ?? '' }}</textarea>
+    <textarea style="width: 50%" name="description" class="form-control" rows="4" required>{{ $person->description ?? old("description") }}</textarea>
     @error('description')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror

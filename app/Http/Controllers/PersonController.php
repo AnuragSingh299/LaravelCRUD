@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePersonRequest;
 use Illuminate\Http\Request;
 use App\Models\Person;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\Rules\Unique;
 
 class PersonController extends Controller
@@ -35,7 +37,7 @@ class PersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePersonRequest $request)
     {
         // $person = new Person;
         // $person->name = $request->name;
@@ -47,15 +49,17 @@ class PersonController extends Controller
         // $person->description = $request->description;
         //$person->hobby = $request->hobby;
         
-        $input = $request->validate([
-             'name' => 'required',
-             'phone_no' => 'required',
-             'date_of_birth' => 'required',
-             'email' => 'required',
-             'gender' => 'required',
-             'age' => 'required',
-             'description' => 'required',
-        ]);
+        // $input = $request->validate([
+        //      'name' => 'required',
+        //      'phone_no' => 'required|max:20|unique:persons,phone_no',
+        //      'date_of_birth' => 'required',
+        //      'email' => 'required|max:30|unique:persons,email',
+        //      'gender' => 'required',
+        //      'age' => 'required|numeric|max:150',
+        //      'description' => 'required',
+        // ]);
+
+        $input = $request->validated();
         //dd($input);
         Person::create($input);
 
@@ -97,20 +101,21 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePersonRequest $request, $id)
     {
-        $input = $request->validate([
-            'name' => 'required',
-            'phone_no' => 'required',
-            'date_of_birth' => 'required',
-            'email' => 'required',
-            'age' => 'required',
-            'description' => 'required',
-            'hobby' => 'required',
-            'gender' => 'required',
-        ]);
+        // $input = $request->validate([
+        //     'name' => 'required',
+        //      'phone_no' => 'required|max:20|unique:persons,phone_no',
+        //      'date_of_birth' => 'required',
+        //      'email' => 'required|max:30|unique:persons,email',
+        //      'gender' => 'required',
+        //      'age' => 'required|numeric|max:150',
+        //      'description' => 'required',
+        // ]);
 
-        Person::where('person_id', $id)
+        $input = $request->validated();
+         
+                Person::where('person_id', $id)
                 ->update($input);
 
         return redirect()->route('person.index');
