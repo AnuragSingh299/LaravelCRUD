@@ -27,13 +27,17 @@
 @extends('layouts.app')
 @section('content')
 <div class="row m-3">
-	<form method="post" action="{{ route('person.update', $person->person_id) }}">
+	{{-- <form method="post" action="{{ route('person.update', $person->person_id) }}"> --}}
+		{{-- {{ Form::open(['route'=>array('person.update', $person->person_id), 'method'=>'post']) }} --}}
+		{{ Form::model($person, ['route' => ['person.update', $person->person_id]]) }}
+
 		@csrf
         @method('PATCH')
 
         @include('person.form')
 		<input type="submit" class="btn btn-success">
 		<a href="{{ route('person.index') }}" class="btn btn-warning">Back</a>
-	</form>
+	{{-- </form> --}}
+	{{ Form::close() }}
 </div>
 @endsection

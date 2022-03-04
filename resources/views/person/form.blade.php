@@ -1,11 +1,88 @@
 <div class="mb-3">
+    {{ Form::label('name', 'Name') }}
+    @php
+        $textAttributer =['name'=>'name','value'=>'','attributes'=>['class'=>'form-control','id'=>'name']] 
+    @endphp
+    @include('field.text',['attributes'=>$textAttributer])
+    @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    {{ Form::label('phone_no', 'Phone') }}
+    @php
+        $textAttributer =['name'=>'phone_no','value'=>'','attributes'=>['class'=>'form-control','id'=>'phone_no']] 
+    @endphp
+    @include('field.text',['attributes'=>$textAttributer])
+    {{-- {{ Form::text('phone_no',  $person->phone_no ?? "", ['class' => 'form-control']) }} --}}
+    @error('phone_no')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    {{ Form::label('date_of_birth', 'Date Of Birth') }}
+    @include('field.date')
+    @error('date_of_birth')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    {{ Form::label('email', 'Email') }}
+    @include('field.email')
+    @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    {{ Form::label('age', 'Age') }}
+    @include('field.number')
+    @error('age')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    @include('field.radio');
+    @error('gender')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    {{ Form::label('hobbies[]', 'Hobby') }}
+    {{ Form::label('cooking', 'Cooking') }}
+    {{ Form::checkbox('hobbies[]', 'cooking', ['class' => 'form-control']) }}
+    {{ Form::checkbox('reading', 'reading', ['class' => 'form-control']) }}
+    {{ Form::label('hobbies[]', 'Reading') }}
+    {{ Form::checkbox('hobbies[]', 'music', ['class' => 'form-control']) }}
+    {{ Form::label('hobbies[]', 'Music') }}
+    @error('hobbies[]')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    {{ Form::label('description', 'Description') }}
+    @include('field.textarea')
+    @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+
+
+{{-- <div class="mb-3">
     <label class="form-label" for="name">Name</label>
     <input style="width: 50%" type="text" name="name" value="{{ $person->name ?? old("name") }}"class="form-control" required>
     @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-</div>
-<div class="mb-3">
+</div> --}}
+{{-- <div class="mb-3">
     <label class="form-label" for="phone">Phone</label>
     <input style="width: 25%" type="text" name="phone_no" value="{{ $person->phone_no ?? old("phone_no")}}" class="form-control" required >
     @error('phone_no')
@@ -18,8 +95,8 @@
     @error('date_of_birth')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-</div>
-<div class="mb-3">
+</div> --}}
+{{-- <div class="mb-3">
     <label class="form-label" for="email">Email</label>
     <input style="width: 50%" type="email" name="email" value="{{ $person->email ?? old("email") }}" class="form-control" required>
     @error('email')
@@ -32,14 +109,14 @@
     @error('age')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-</div>
+</div> --}}
 {{-- <div class="mb-3" class="form-">
     <label class="form-label" for="gender">Gender</label>
     <input type="radio" name="gender" class="form-control" value="male" class="form-check-input" checked> Male
     <input type="radio" name="gender" class="form-control" value="female" > Female
     <input type="radio" name="gender" class="form-control" value="other" > Other --}}
 
-<div class="mb-3" class="form-check">
+{{-- <div class="mb-3" class="form-check">
     <label class="form-label" for="gender">Gender</label><br>
 
     <input class="form-check-input" type="radio" name="gender" value="male" checked>
@@ -57,7 +134,7 @@
     @error('gender')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-</div>
+</div> --}}
 {{-- <div class="mb-3">
     <label class="form-label" for="hobby">Name</label>
     <input type="text" name="hobby" class="form-control" required>
@@ -66,7 +143,7 @@
     @enderror
 </div> --}}
 
-<div class="mb-3" class="form-check">
+{{-- <div class="mb-3" class="form-check">
     <label class="form-label" for="gender">Hobby</label><br>
 
     <input class="form-check-input" type="checkbox" value="Sports" name="hobby[]" checked>
@@ -96,4 +173,4 @@
     @error('description')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-</div>
+</div> --}}
